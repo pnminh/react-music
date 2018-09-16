@@ -5,6 +5,7 @@ import Album from './Album/Album';
 import { Switch, Route } from 'react-router-dom'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { FaPlay, FaPause } from 'react-icons/fa';
 class App extends Component {
   constructor() {
     super();
@@ -15,7 +16,9 @@ class App extends Component {
     }
     fetch('/assets/data/album.json')
       .then((data) => data.json())
-      .then((albumData) => this.setState({ albums: albumData }))
+      .then((albumData) => {
+        this.setState({ albums: albumData })
+      })
   }
   playPauseHandler = (album, song, id) => {
     console.log(this.state)
@@ -29,6 +32,19 @@ class App extends Component {
       if (this.state.isPlaying) this.audio.pause();
       else this.audio.play();
       this.setState({ isPlaying: !this.state.isPlaying });
+    }
+  }
+  renderPlayPause = (album, song, id) => {
+    if (this.state.currentSong === song) {
+      if (this.state.isPlaying) {
+        return (
+          <span><FaPause /></span>
+        )
+      } else {
+        return <span><FaPlay /></span>
+      }
+    } else {
+      return <span><FaPlay /></span>
     }
   }
   render() {
@@ -56,7 +72,7 @@ class App extends Component {
         </Navbar>
         <Switch>
           <Route exact path="/" render={() => (<Library albums={this.state.albums} />)} />
-          <Route path="/album/:slug" render={(props) => (<Album playPauseHandler={this.playPauseHandler} albums={this.state.albums} {...props} />)} />
+          <Route path="/album/:slug" render={(props) => (<Album playPauseHandler={this.playPauseHandler} renderPlayPause={this.renderPlayPause} albums={this.state.albums} {...props} />)} />
         </Switch>
       </div>
     );

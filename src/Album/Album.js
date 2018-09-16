@@ -40,7 +40,7 @@ export default class Album extends Component {
                                     <tr key={id}>
                                         <td>{song.title}</td>
                                         <td>{song.duration}</td>
-                                        <td><FaPlay onClick={()=>this.props.playPauseHandler(album,song,id)}/></td>
+                                        <td onClick={()=>this.props.playPauseHandler(album,song,id)}>{this.props.renderPlayPause(album,song,id)}</td>
                                     </tr>
                                 )
                             }
