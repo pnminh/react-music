@@ -69,7 +69,7 @@ class App extends Component {
       currentId++;
       this.audio.setAttribute('src', this.state.currentAlbum.songs[currentId].audioSrc);
       this.audio.play();
-      this.setState({currentId:currentId,currentSong:this.state.currentAlbum.songs[currentId]})
+      this.setState({isPlaying:true,currentId:currentId,currentSong:this.state.currentAlbum.songs[currentId]})
     }
   }
   playerPreviousHandler = () => {
@@ -78,7 +78,7 @@ class App extends Component {
       currentId--;
       this.audio.setAttribute('src', this.state.currentAlbum.songs[currentId].audioSrc);
       this.audio.play();
-      this.setState({currentId:currentId,currentSong:this.state.currentAlbum.songs[currentId]})
+      this.setState({isPlaying:true,currentId:currentId,currentSong:this.state.currentAlbum.songs[currentId]})
     }
   }
   render() {
