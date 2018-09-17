@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Media, Table } from 'react-bootstrap';
-import {FaPlay} from 'react-icons/fa';
 export default class Album extends Component {
     constructor(){
         super()
-        this.state = {isPlaying:false,currentSong:null}
         this.audio = new Audio()
     }
     render() {
